@@ -1,0 +1,48 @@
+# -------
+.DS_Store
+Thumbs.db
+
+# -------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# -------
+.venv/
+venv/
+env/
+ENV/
+
+# -------
+.ipynb_checkpoints/
+.jupyter/
+
+# -------
+.vscode/
+.idea/
+*.code-workspace
+
+# -------
+*.log
+*.tmp
+*.temp
+
+# -------
+data/*.zip
+data/*.parquet
+data/*.feather
+data/*.pkl
+data/*.npy
+data/*.npz
+
+# -------
+models/
+*.cbm
+*.onnx
+*.pt
+*.pth
