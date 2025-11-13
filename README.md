@@ -7,6 +7,15 @@
 
 [![Kaggle](https://img.shields.io/badge/Kaggle-leopard--challenge--regression-20BEFF?style=flat&logo=kaggle)](https://www.kaggle.com/competitions/leopard-challenge-regression)
 ![CatBoost](https://img.shields.io/badge/CatBoost-Regressor-FFCC00?style=flat)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=flat&logo=jupyter)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=flat&logo=pandas)
+![NumPy](https://img.shields.io/badge/NumPy-Numerical-013243?style=flat&logo=numpy)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-11557C?style=flat)
+![Seaborn](https://img.shields.io/badge/Seaborn-Visualization-4C8CBF?style=flat)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-FA6F00?style=flat&logo=scikit-learn)
+![Optuna](https://img.shields.io/badge/Optuna-Hyperparameter--Tuning-7A1FA2?style=flat)
+![Phik](https://img.shields.io/badge/Phik-Correlation-0A7BBB?style=flat)
 
 ---
 
@@ -107,28 +116,31 @@ cat_features = ['Suburb', 'Method', 'Type', 'SellerG', 'CouncilArea', 'Regionnam
 
 ---
 
-🤖 Модель и обучение
+## 🤖 Модель и обучение
 
-Базовая модель
+### Базовая модель
 
-Используется CatBoostRegressor с функцией потерь RMSE и метрикой качества MAPE.
-Обучение происходит с разбиением на train/val (через train_test_split) и использованием GPU (при наличии):
-	•	большое число итераций,
-	•	bootstrap_type = 'Bayesian',
-	•	настройка глубины дерева, l2_leaf_reg, bagging_temperature,
-	•	early_stopping_rounds для предотвращения переобучения.
+Используется `CatBoostRegressor` с функцией потерь **RMSE** и метрикой качества **MAPE**.  
+Обучение происходит с разбиением на `train/val` (через `train_test_split`) и использованием GPU (при наличии):
 
-Подбор гиперпараметров
+- большое число итераций;
+- `bootstrap_type = 'Bayesian'`;
+- настройка глубины дерева, `l2_leaf_reg`, `bagging_temperature`;
+- `early_stopping_rounds` для предотвращения переобучения.
 
-Для улучшения качества используется Optuna:
-	•	оптимизируются:
-	•	learning_rate
-	•	depth
-	•	l2_leaf_reg
-	•	bagging_temperature
-	•	random_strength
-	•	early_stopping_rounds
-	•	целевая метрика в Optuna: neg_mean_absolute_percentage_error с кросс-валидацией (cross_val_score, cv=2).
+### Подбор гиперпараметров
+
+Для улучшения качества используется **Optuna**:
+
+- оптимизируются:
+  - `learning_rate`
+  - `depth`
+  - `l2_leaf_reg`
+  - `bagging_temperature`
+  - `random_strength`
+  - `early_stopping_rounds`
+- целевая метрика в Optuna: `neg_mean_absolute_percentage_error`  
+  с кросс-валидацией (`cross_val_score`, `cv=2`).
 
 После завершения поиска модель дообучается на полном тренировочном датасете с лучшими параметрами.
 
@@ -148,7 +160,7 @@ MAPE (test) Kaggle = 15.13012
 ---
 
 📁 Структура проекта
-
+```bash
 .
 ├── data/
 │   ├── sample_submission.csv
@@ -158,7 +170,7 @@ MAPE (test) Kaggle = 15.13012
 │   └── regression-leopard-challenge.ipynb
 ├── LICENSE
 └── README.md
-
+```
 ---
 
 🚀 Как запустить
@@ -197,10 +209,11 @@ jupyter notebook regression-leopard-challenge.ipynb
 
 ---
 
-🧠 Используемые техники
-	•	продвинутая обработка пропусков с использованием группировок (groupby + median/mean);
-	•	извлечение календарных признаков из даты продажи;
-	•	работа с категориальными признаками через CatBoost без явного one-hot;
-	•	кросс-валидация и оптимизация гиперпараметров через Optuna;
-	•	оценка качества с использованием R² и MAPE.
+##  Используемые техники
+
+- продвинутая обработка пропусков с использованием группировок (`groupby` + `median/mean`);
+- извлечение календарных признаков из даты продажи;
+- работа с категориальными признаками через CatBoost без явного one-hot;
+- кросс-валидация и оптимизация гиперпараметров через Optuna;
+- оценка качества с использованием R² и MAPE.
 
